@@ -1,3 +1,5 @@
+//electron stuff
+
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
 const { spawn } = require('child_process');
@@ -6,7 +8,7 @@ function createWindow() {
     const win = new BrowserWindow({
         width: 1280,
         height: 800,
-        title: "CYPHER SYSTEM v1.0",
+        title: "cypher-v1",
         backgroundColor: '#0a0a0a',
         webPreferences: {
             nodeIntegration: true,
@@ -37,3 +39,4 @@ app.whenReady().then(() => {
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') app.quit();
 });
+
