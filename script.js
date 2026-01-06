@@ -2,7 +2,7 @@ let chatHistory = [];
 let isRecording = false;
 let lastInputWasVoice = false;
 
-// --- VOICE OUTPUT ---
+//voice output
 async function speak(text){
     try {
         await fetch('http://127.0.0.1:5000/speak', {
@@ -13,7 +13,7 @@ async function speak(text){
     } catch(e){console.error("TTS failed", e);}
 }
 
-// --- MIC TOGGLE (start/stop) ---
+//mic toggle
 const micBtn = document.getElementById('micBtn');
 micBtn.onclick = async ()=>{
     if(isRecording){
@@ -41,7 +41,7 @@ micBtn.onclick = async ()=>{
     }
 };
 
-// --- CHAT LOGIC ---
+//chat
 document.getElementById('jarvisForm').addEventListener('submit',async(e)=>{
     e.preventDefault();
     const input=document.getElementById('userInput').value.trim();
@@ -59,7 +59,7 @@ document.getElementById('jarvisForm').addEventListener('submit',async(e)=>{
     // Thinking
     const thinkDiv=document.createElement('div');
     thinkDiv.className='message cypher thinking';
-    thinkDiv.innerHTML=`<div class="message-content">CYPHER IS ANALYZING... ⚡</div>`;
+    thinkDiv.innerHTML=`<div class="message-content">Cypher is thinking...</div>`;
     chatDisplay.appendChild(thinkDiv);
     chatDisplay.scrollTop=chatDisplay.scrollHeight;
 
@@ -69,7 +69,7 @@ document.getElementById('jarvisForm').addEventListener('submit',async(e)=>{
         const userLower=input.toLowerCase();
         if(["open","launch","run"].some(word=>userLower.includes(word))){
             await fetch('http://127.0.0.1:5000/exec',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({command:userLower})});
-            aiResponse="Command executed, Boss. 🚀";
+            aiResponse="Command executed, Boss.";
         } else {
             chatHistory.push({role:'user',content:input});
             try{
@@ -99,7 +99,8 @@ document.getElementById('jarvisForm').addEventListener('submit',async(e)=>{
         Prism.highlightAll();
         chatDisplay.scrollTop=chatDisplay.scrollHeight;
     }catch(err){
-        thinkDiv.textContent="CRITICAL ERROR: Something went REALLY wrong. 🧱💀";
+        thinkDiv.textContent="something went wrong. check if ollama is hosted.";
         console.error(err);
     }
 });
+
