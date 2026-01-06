@@ -8,53 +8,50 @@ import numpy as np
 import re
 
 def structure_text(text):
-    # split into sentences for spacing
     sentences = re.split(r'(?<=[.!?]) +', text)
     
     structured = ""
     for s in sentences:
         s = s.strip()
         if len(s) > 0:
-            # maybe add a little stylistic flair
             if s[-1] not in ".!?":
-                s += "."  # make sure every sentence ends properly
-            # optional: add soft pause emoji for vibe
+                s += "." 
             if len(s.split()) > 6:
-                s += " ⚡"
+                s += " ⚡" #random emoji lol
             structured += s + " "
     return structured.strip()
 
 
 sys.stdout.reconfigure(encoding="utf-8")
 # -*- coding: utf-8 -*-
-print("🔍 DEBUG: Starting imports...")
+print("DEBUG: Starting imports...")
 
 try:
     import wavio
-    print("✅ wavio imported")
+    print("wavio imported")
 except ImportError as e:
-    print(f"❌ wavio FAILED: {e}")
+    print(f"wavio failed: {e}")
     sys.exit(1)
 
 try:
     import sounddevice as sd
-    print("✅ sounddevice imported")
+    print("sounddevice imported")
 except ImportError as e:
-    print(f"❌ sounddevice FAILED: {e}")
+    print(f"sounddevice failed: {e}")
     sys.exit(1)
 
 try:
     from faster_whisper import WhisperModel
-    print("✅ faster_whisper imported")
+    print("faster_whisper imported")
 except ImportError as e:
-    print(f"❌ faster_whisper FAILED: {e}")
+    print(f"faster_whisper failed: {e}")
     sys.exit(1)
 
 try:
     import pyttsx3
-    print("✅ pyttsx3 imported")
+    print("pyttsx3 imported")
 except ImportError as e:
-    print(f"❌ pyttsx3 FAILED: {e}")
+    print(f"pyttsx3 failed: {e}")
     sys.exit(1)
 
 from flask import Flask, request, jsonify
@@ -63,30 +60,30 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-# --- LOAD WHISPER ---
-print("🔍 DEBUG: Loading Whisper model...")
+#whisper
+print(Loading Whisper model...")
 model = WhisperModel("tiny", device="cpu", compute_type="int8")
-print("✅ Whisper model loaded")
+print("Whisper model loaded")
 
-# --- PYTTSX3 SETUP ---
+#pyttsx3
 engine = pyttsx3.init()
 engine.setProperty('rate', 150)   # speed
 engine.setProperty('volume', 1.0) # max volume
 
 voices = engine.getProperty('voices')
-# Choose a male / robotic voice
+#voices
 for v in voices:
     if "male" in v.name.lower() or "english" in v.name.lower():
         engine.setProperty('voice', v.id)
         break
 
-# --- RECORDING THREAD / FLAGS ---
+#recording
 recording_flag = threading.Event()
 record_thread = None
 audio_filename = "temp.wav"
 
 def record_audio(filename=audio_filename, fs=44100):
-    print("🎤 Recording started...")
+    print("Recording started...")
     frames = []
     while recording_flag.is_set():
         chunk = sd.rec(int(0.5 * fs), samplerate=fs, channels=1, dtype='int16')
@@ -95,11 +92,11 @@ def record_audio(filename=audio_filename, fs=44100):
     if frames:
         audio_array = np.concatenate(frames, axis=0)
         wavio.write(filename, audio_array, fs, sampwidth=2)
-        print(f"✅ Saved {filename}")
+        print(f"Saved {filename}")
     return filename
 
 def transcribe_audio(file_path):
-    # Wait until file exists
+    #wait until it makes the file
     timeout = 5
     while not os.path.exists(file_path) and timeout > 0:
         time.sleep(0.1)
@@ -109,10 +106,10 @@ def transcribe_audio(file_path):
 
     segments, _ = model.transcribe(file_path, beam_size=5)
     text = " ".join([s.text for s in segments])
-    print(f"✅ Transcription: {text}")
+    print(f"Transcription: {text}")
     return text.strip()
 
-# --- ROUTES ---
+#routes
 @app.route('/whisper_start', methods=['POST'])
 def whisper_start():
     global record_thread
@@ -147,7 +144,7 @@ def execute_command():
     data = request.json
     command = data.get('command', '').lower()
     apps = {
-        "discord": "discord",
+        "discord": "discord", #i dont fucking know the discord location
         "spotify": "spotify",
         "youtube": "https://www.youtube.com",
         "google": "https://www.google.com",
@@ -163,11 +160,12 @@ def execute_command():
                 print(f"✅ Launched {key}")
                 return jsonify({"status": f"{key} launched"}), 200
             except Exception as e:
-                print(f"❌ Failed to launch {key}: {e}")
+                print(f"Failed to launch {key}: {e}")
                 return jsonify({"error": str(e)}), 500
     return jsonify({"status": "unknown command"}), 400
 
 if __name__ == "__main__":
-    print("🚀 CYPHER BRIDGE LIVE ON PORT 5000")
-    print("🔥 Ready to transcribe voice and execute commands")
+    print("live")
+    print("app running")
     app.run(host='127.0.0.1', port=5000, debug=False)
+
