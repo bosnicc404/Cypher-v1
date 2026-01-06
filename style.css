@@ -5,7 +5,7 @@
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     background: #0a0a0a url('https://uploads.dailydot.com/2025/02/jarvis_memes_usable.jpg?q=65&auto=format&w=1600&ar=2:1&fit=crop') center/cover no-repeat fixed;
     color: #e0e0e0;
     height: 100vh;
@@ -15,45 +15,45 @@ body {
 .app-container {
     display: flex;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(4px);
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(8px);
 }
 
-/* SIDEBAR */
 .sidebar {
     width: 260px;
-    background: rgba(10, 10, 10, 0.8);
-    border-right: 1px solid rgb(40, 31, 122);
+    background: rgba(23, 23, 23, 0.85);
+    border-right: 1px solid #2a2a2a;
     padding: 16px;
     display: flex;
     flex-direction: column;
 }
 
 .new-chat-btn {
-    background: transparent;
-    border: 1px solid #0f8;
-    color: rgb(40, 31, 122);
-    padding: 10px 14px;
+    background: #1f1f1f;
+    border: 1px solid #00ff88;
+    color: #00ff88;
+    padding: 12px 16px;
     border-radius: 8px;
     cursor: pointer;
     font-size: 14px;
+    font-weight: 500;
     margin-bottom: 16px;
-    transition: 0.3s;
+    transition: all 0.2s;
 }
 
 .new-chat-btn:hover {
-    background: rgba(40, 31, 122, 0.1);
-    box-shadow: 0 0 10px rgba(40, 31, 122, 0.3);
+    background: #252525;
+    transform: translateY(-1px);
 }
 
 .sidebar-footer p {
     margin-top: auto;
-    font-size: 12px;
-    color: #0f8;
+    font-size: 11px;
+    color: #666;
     text-align: center;
+    opacity: 0.7;
 }
 
-/* CHAT AREA */
 .chat-area {
     flex: 1;
     display: flex;
@@ -63,19 +63,18 @@ body {
 .chat-display {
     flex: 1;
     overflow-y: auto;
-    padding: 24px;
+    padding: 32px 24px;
     display: flex;
     flex-direction: column;
-    gap: 24px;
-    max-width: 900px;
+    gap: 20px;
+    max-width: 800px;
     margin: 0 auto;
     width: 100%;
 }
 
-/* MESSAGES */
 .message {
     display: flex;
-    gap: 12px;
+    gap: 14px;
     max-width: 100%;
     align-items: flex-start;
 }
@@ -85,193 +84,191 @@ body {
 }
 
 .message-avatar {
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     flex-shrink: 0;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    display: grid;
-    place-items: center;
-    font-weight: bold;
-    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 16px;
 }
 
 .message.user .message-avatar {
-    background: rgba(40, 31, 122, 0.9);
-    color: white;
+    background: #2a2a2a;
+    color: #fff;
 }
 
 .message.cypher .message-avatar {
-    background: linear-gradient(135deg, #0f8, #00ff9d);
-    color: black;
+    background: linear-gradient(135deg, #00ff88, #00cc70);
+    color: #000;
 }
 
 .message-content {
-    max-width: 70%;
-    padding: 14px 18px;
-    border-radius: 20px;
-    line-height: 1.5;
-    font-size: 16px;
+    max-width: 75%;
+    padding: 12px 16px;
+    border-radius: 16px;
+    line-height: 1.6;
+    font-size: 15px;
     word-wrap: break-word;
 }
 
 .message.user .message-content {
-    background: rgba(40, 31, 122, 0.8);
-    color: white;
+    background: rgba(42, 42, 42, 0.9);
+    color: #fff;
     border-bottom-right-radius: 4px;
+    backdrop-filter: blur(10px);
 }
 
 .message.cypher .message-content {
-    background: rgba(15, 15, 15, 0.9);
-    color: #cfc;
-    border: 1px solid #0f8;
-    box-shadow: 0 0 15px rgba(0, 255, 136, 0.2);
+    background: rgba(23, 23, 23, 0.85);
+    color: #e8e8e8;
+    border: 1px solid #2a2a2a;
     border-bottom-left-radius: 4px;
-    backdrop-filter: blur(8px);
-    font-family: 'Comic Sans MS', cursive, sans-serif;
+    backdrop-filter: blur(10px);
 }
 
 .thinking .message-content {
     font-style: italic;
-    color: #0f8;
-    opacity: 0.9;
-    animation: pulse 2s infinite;
+    color: #00ff88;
+    opacity: 0.8;
+    animation: thinking 2s infinite;
 }
 
-@keyframes pulse {
-    0%, 100% { opacity: 0.6; }
-    50% { opacity: 1; }
+@keyframes thinking {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 0.9; }
 }
 
-/* INPUT */
 .input-container {
-    padding: 16px 24px;
-    max-width: 900px;
+    padding: 20px 24px 24px;
+    max-width: 800px;
     margin: 0 auto;
     width: 100%;
 }
 
 #jarvisForm {
     display: flex;
-    background: rgba(20, 20, 20, 0.8);
-    border-radius: 30px;
-    padding: 8px;
-    border: 1px solid #0f8;
-    box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+    background: rgba(23, 23, 23, 0.9);
+    border-radius: 24px;
+    padding: 4px 8px;
+    border: 1px solid #2a2a2a;
+    backdrop-filter: blur(10px);
+    transition: border-color 0.2s;
+}
+
+#jarvisForm:focus-within {
+    border-color: #00ff88;
 }
 
 #userInput {
     flex: 1;
     background: transparent;
     border: none;
-    color: white;
-    font-size: 16px;
-    padding: 14px 20px;
+    color: #fff;
+    font-size: 15px;
+    padding: 14px 16px;
     outline: none;
+}
+
+#userInput::placeholder {
+    color: #666;
 }
 
 #jarvisForm button {
     background: transparent;
     border: none;
-    color: rgb(40, 31, 122);
+    color: #00ff88;
     cursor: pointer;
-    padding: 0 20px;
-    font-size: 20px;
+    padding: 0 16px;
+    font-size: 18px;
+    transition: all 0.2s;
 }
 
 #jarvisForm button:hover {
-    color: white;
+    opacity: 0.8;
+    transform: scale(1.05);
 }
 
-/* CODE BOX */
 .code-box {
-    margin: 16px 0;
-    border-radius: 12px;
+    margin: 12px 0;
+    border-radius: 8px;
     overflow: hidden;
-    border: 1px solid #0f8;
-    box-shadow: 0 0 20px rgba(0, 255, 136, 0.15);
-    background: #050505;
-    font-family: 'Fira Code', monospace;
+    border: 1px solid #2a2a2a;
+    background: rgba(13, 13, 13, 0.95);
+    backdrop-filter: blur(10px);
 }
 
 .code-header {
-    background: #111;
-    padding: 10px 16px;
+    background: rgba(23, 23, 23, 0.95);
+    padding: 8px 14px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #0f8;
-    color: #0f8;
-    font-size: 13px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    border-bottom: 1px solid #2a2a2a;
+    font-size: 12px;
+    font-weight: 500;
+    color: #999;
 }
 
 .copy-btn {
-    background: rgba(0, 255, 136, 0.15);
-    color: #0f8;
+    background: #2a2a2a;
+    color: #fff;
     border: none;
-    padding: 4px 12px;
-    border-radius: 6px;
+    padding: 4px 10px;
+    border-radius: 4px;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 11px;
     transition: all 0.2s;
 }
 
 .copy-btn:hover {
-    background: #0f8;
-    color: black;
+    background: #00ff88;
+    color: #000;
 }
 
 .code-box pre {
     margin: 0 !important;
-    padding: 20px !important;
-    background: #050505 !important;
+    padding: 16px !important;
+    background: rgba(13, 13, 13, 0.95) !important;
     overflow-x: auto;
 }
 
 .code-box code {
-    font-size: 14.5px !important;
-    line-height: 1.6 !important;
-    color: #f8f8f2 !important;
+    font-family: 'Monaco', 'Courier New', monospace;
+    font-size: 13.5px !important;
+    line-height: 1.5 !important;
 }
 
-/* Prism Token Colors */
-.token.comment     { color: #6272a4 !important; }
-.token.keyword     { color: #8be9fd !important; font-weight: bold; }
-.token.operator    { color: #ff79c6 !important; }
-.token.function    { color: #50fa7b !important; }
-.token.class-name  { color: #50fa7b !important; }
-.token.string      { color: #f1fa8c !important; }
-.token.tag         { color: #ff79c6 !important; }
-.token.attr-name   { color: #8be9fd !important; }
-.token.attr-value  { color: #f1fa8c !important; }
-.token.punctuation { color: #f8f8f2 !important; }
-.token.number      { color: #bd93f9 !important; }
+.token.comment { color: #6a737d !important; }
+.token.keyword { color: #ff7b72 !important; }
+.token.operator { color: #ff7b72 !important; }
+.token.function { color: #d2a8ff !important; }
+.token.class-name { color: #ffa657 !important; }
+.token.string { color: #a5d6ff !important; }
+.token.tag { color: #7ee787 !important; }
+.token.attr-name { color: #79c0ff !important; }
+.token.attr-value { color: #a5d6ff !important; }
+.token.punctuation { color: #c9d1d9 !important; }
+.token.number { color: #79c0ff !important; }
 
 #micBtn {
     background: transparent;
     border: none;
-    color: #0f8;
-    font-size: 1.2rem;
+    color: #00ff88;
+    font-size: 18px;
     cursor: pointer;
-    padding: 0 10px;
-    transition: 0.3s;
+    padding: 0 12px;
+    transition: all 0.2s;
 }
 
 #micBtn.recording {
-    color: #ff4444;
-    text-shadow: 0 0 10px #ff4444;
+    color: #ff4d4d;
+    animation: recording 1s infinite;
 }
 
-.thinking .message-content {
-    animation: pulse 1.5s infinite;
-    color: #0f8;
-}
-
-@keyframes pulse {
-    0% { opacity: 0.5; }
-    50% { opacity: 1; }
-    100% { opacity: 0.5; }
+@keyframes recording {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
 }
