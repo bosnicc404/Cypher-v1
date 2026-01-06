@@ -1,0 +1,19 @@
+{
+  "name": "project-cypher",
+  "version": "1.0.0",
+  "description": "Cypher AI",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [],
+  "author": "Amar",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "electron": "^39.2.7"
+  },
+  "dependencies": {
+    "marked": "^17.0.1"
+  }
+}
