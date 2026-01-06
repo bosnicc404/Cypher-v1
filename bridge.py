@@ -61,7 +61,7 @@ app = Flask(__name__)
 CORS(app)
 
 #whisper
-print(Loading Whisper model...")
+print("Loading Whisper model...")
 model = WhisperModel("tiny", device="cpu", compute_type="int8")
 print("Whisper model loaded")
 
@@ -129,7 +129,7 @@ def whisper_stop():
             os.remove(audio_filename)
         return jsonify({"text": text})
     except Exception as e:
-        print(f"❌ Whisper STOP error: {e}")
+        print(f"Whisper STOP error: {e}")
         return jsonify({"error": str(e)}), 500
 
 @app.route('/speak', methods=['POST'])
@@ -168,4 +168,3 @@ if __name__ == "__main__":
     print("live")
     print("app running")
     app.run(host='127.0.0.1', port=5000, debug=False)
-
