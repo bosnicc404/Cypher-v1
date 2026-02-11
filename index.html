@@ -13,21 +13,33 @@
     <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
-<!--the like font box thingies-->
 </head>
 <body>
     <div class="app-container">
         <aside class="sidebar">
-            <button class="new-chat-btn">+ New Chat</button> <!--new chat btn doesnt work yet-->
-            <div class="sidebar-footer"><p>Cypher v1</p></div>
+            <button class="new-chat-btn">+ New Chat</button>
+            <div class="chat-list-container">
+                <div class="chat-list-header">Recent Chats</div>
+                <div id="chatList" class="chat-list"></div>
+            </div>
+            <div class="sidebar-footer">
+                <div id="listeningIndicator" class="listening-indicator">🎤 LISTENING...</div>
+                <p>Cypher v1</p>
+            </div>
         </aside>
 
         <main class="chat-area">
             <div id="chatDisplay" class="chat-display"></div>
             <div class="input-container">
                 <form id="jarvisForm">
-                    <button type="button" id="micBtn"><i class="fas fa-microphone"></i></button>
-                    <input type="text" id="userInput" placeholder="Message Cypher..." autocomplete="off" required>
+                    <button type="button" id="webSearchBtn" title="Web search: OFF">
+                        <i class="fas fa-globe"></i>
+                    </button>
+                    <button type="button" id="pdfUploadBtn" class="pdf-btn" title="Upload PDF">
+                        <i class="fas fa-file-pdf"></i>
+                    </button>
+                    <input type="file" id="pdfInput" accept=".pdf" style="display: none;">
+                    <input type="text" id="userInput" placeholder="Message Cypher... (or just talk!)" autocomplete="off">
                     <button type="submit"><i class="fas fa-paper-plane"></i></button>
                 </form>
             </div>
@@ -35,5 +47,4 @@
     </div>
     <script src="script.js"></script>
 </body>
-
 </html>
